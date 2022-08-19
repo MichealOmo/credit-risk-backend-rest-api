@@ -12,13 +12,13 @@ COPY . ./
 ENV PYTHONPATH "${PYTHONPATH}:api"
 # ENV PYTHONPATH "${PYTHONPATH}"
 
-CMD ["uvicorn", "api.main:app", "--reload", "--port", "80"]
+# CMD ["uvicorn", "api.main:app", "--reload", "--port", "80"]
 
 
 # ENTRYPOINT uvicorn api.main:app --reload
 
 
-# CMD ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "8001"]
 
 
 
