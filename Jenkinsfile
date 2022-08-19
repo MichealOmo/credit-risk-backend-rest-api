@@ -18,7 +18,7 @@ pipeline {
     stage("run") {
       steps {
         sh """
-          docker run -d --name credit-risk-backend-rest-api credit-risk-backend-rest-api-image:latest
+          docker run -d --name credit-risk-backend-rest-api credit-risk-backend-rest-api-image
         """
       }
     }
