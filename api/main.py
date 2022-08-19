@@ -1,7 +1,7 @@
 # import time
 from fastapi import FastAPI, requests
 # from api.utils.dbUtil import database
-from api.auth import router as auth_router
+# from api.auth import router as auth_router
 
 # from utils.dbUtil import database
 # from auth import router as auth_router
