@@ -4,21 +4,21 @@ pipeline {
     stage("build") {
       steps {
         sh """
-          docker-compose build
+          docker build -t credit-risk-backend-rest-api-image:latest .
         """
       }
     }
     stage("remove-old") {
       steps {
         sh """
-          docker-compose stop fast-api || true
+          docker rm -f credit-risk-backend-rest-api || true
         """
       }
     }
     stage("run") {
       steps {
         sh """
-          docker-compose up
+          docker run -d --name credit-risk-backend-rest-api credit-risk-backend-rest-api-image:latest
         """
       }
     }
