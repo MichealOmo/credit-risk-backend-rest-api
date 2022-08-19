@@ -11,7 +11,7 @@ pipeline {
     stage("remove-old") {
       steps {
         sh """
-          docker rm -f credit-risk-backend-rest-api
+          docker rm -f credit-risk-backend-rest-api || true
         """
       }
     }
