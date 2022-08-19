@@ -35,7 +35,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
     volumes:
-     - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
 
   pgadmin:
     container_name: pgadmin
@@ -50,7 +50,7 @@ services:
     depends_on:
       - db
     volumes:
-     - pgadmin-data:/var/lib/pgadmin
+      - pgadmin-data:/var/lib/pgadmin
 
   volumes:
     db-data:
