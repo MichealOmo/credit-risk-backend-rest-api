@@ -23,6 +23,8 @@ services:
   postgres:
     container_name: postgres_container
     image: postgres
+    env_file:
+      - ./.env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -38,6 +40,8 @@ services:
   pgadmin:
     container_name: pgadmin_container
     image: dpage/pgadmin4
+    env_file:
+      - ./.env
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
