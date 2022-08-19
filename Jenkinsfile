@@ -18,7 +18,7 @@ pipeline {
     stage("run") {
       steps {
         sh """
-          docker-compose up --remove-orphans
+          docker-compose up
         """
       }
     }
