@@ -17,7 +17,7 @@ def database_mysql_url_config():
     # return str(conf("DB_CONNECTION") + "://" + conf("DB_USER") + ":" + conf("DB_PASSWORD") +
     #            "@"  + conf("DB_HOST") + ":" + conf("DB_PORT") + "/" + conf("DB_DATABASE") )
     return str(conf("DB_CONNECTION") + "://" + conf("DB_USER") + ":" + conf("DB_PASSWORD") +
-               "@"  + conf("DB_CONTAINER") + "/" + conf("DB_DATABASE") )
+               "@"  + conf("DB_DATABASE") + "/" + conf("DB_DATABASE") )
 
 
 database = databases.Database(database_mysql_url_config())
