@@ -9,7 +9,16 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 COPY . ./
 
-CMD ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "api.main:app", "--reload", "--port", "8001"]
+
+
+
+
+
+# CMD ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
+
+
+
 # CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
 # CMD ["uvicorn", "api.main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"]
 # CMD ["uvicorn", "api.main:app", "--reload", "--port", "80"]
