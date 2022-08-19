@@ -7,6 +7,7 @@ services:
     tty: true
     env_file:
       - ./.env
+
     container_name: fast-api
     ports:
       - ${APP_PORT}:8001
@@ -17,24 +18,24 @@ services:
       # - ./api:/api
       # - ./upload-images/:/upload-images/user/
 
-    # depends_on:
-    #   - db
     depends_on:
-      - pgadmin
+      - db
     restart: always
 
-  # db:
-  #   container_name: postgresql_db
-  #   env_file:
-  #     - .env
-  #   image: postgres
-  #   restart: always
-  #   ports:
-  #     - ${DB_PORT}:5432
-  #   environment:
-  #     - POSTGRES_USER=${DB_USER}
-  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
-  #     - POSTGRES_DB=${DB_DATABASE}
+  db:
+    container_name: postgresql_db
+    env_file:
+      - .env
+    image: postgres
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+     - db-data:/var/lib/postgresql/data
 
   pgadmin:
     container_name: pgadmin
@@ -46,5 +47,11 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
     ports:
       - ${PG_ADMIN_PORT}:5050
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
+    volumes:
+     - pgadmin-data:/var/lib/pgadmin
+
+  volumes:
+    db-data:
+    pgadmin-data:
