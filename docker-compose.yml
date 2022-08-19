@@ -3,6 +3,8 @@ version: "3.8"
 services:
   api:
     build: .
+    stdin_open: true
+    tty: true
     env_file:
       - ./.env
     container_name: fast-api
