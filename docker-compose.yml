@@ -5,17 +5,11 @@ services:
     build: .
     env_file:
       - ./.env
-
     container_name: fast-api
     ports:
       - ${APP_PORT}:8001
     volumes:
-      - ./:/api # working
-      # - ./api:/api # working
-
-      # - ./api:/api
-      # - ./upload-images/:/upload-images/user/
-
+      - ./:/api
     depends_on:
       - postgres
     restart: always
@@ -26,8 +20,11 @@ services:
     env_file:
       - ./.env
     environment:
+      POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_HOSTNAME: ${DB_HOST}:5432
+      POSTGRES_HOST_AUTH_METHOD: trust
       PGDATA: /data/postgres
     volumes:
        - postgres:/data/postgres
@@ -48,7 +45,6 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
        - pgadmin:/var/lib/pgadmin
-
     ports:
       - "${PG_ADMIN_PORT}:5050"
     networks:
