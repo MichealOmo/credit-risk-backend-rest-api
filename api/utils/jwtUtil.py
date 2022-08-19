@@ -1,7 +1,7 @@
 import jwt
 from datetime import datetime, timedelta  # noqa
-from api.utils import constantUtil
-# from utils import constantUtil
+# from api.utils import constantUtil
+from utils import constantUtil
 
 async def create_access_token(*, data: dict, expires_delta: timedelta = None): # it means every input after * must be a keyword argument
     to_encode = data.copy()
