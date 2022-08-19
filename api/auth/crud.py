@@ -1,7 +1,7 @@
 from api.utils.dbUtil import database
-# from api.auth import schema
-from auth import schema
-from utils.dbUtil import database
+from api.auth import schema
+# from auth import schema
+# from utils.dbUtil import database
 
 def find_user_exists(email: str):
     query = "SELECT * FROM my_users WHERE status='1' AND email=:email"
