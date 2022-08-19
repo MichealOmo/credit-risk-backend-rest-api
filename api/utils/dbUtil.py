@@ -14,10 +14,18 @@ def setting():
 
 def database_mysql_url_config():
     conf = Config('./.env')
+    # return str(conf("DB_CONNECTION") + "://" + conf("DB_USER") + ":" + conf("DB_PASSWORD") +
+    #            "@"  + conf("DB_HOST") + ":" + conf("DB_PORT") + "/" + conf("DB_DATABASE") )
     return str(conf("DB_CONNECTION") + "://" + conf("DB_USER") + ":" + conf("DB_PASSWORD") +
-               "@"  + conf("DB_HOST") + ":" + conf("DB_PORT") + "/" + conf("DB_DATABASE") )
+               "@"  + conf("DB_DATABASE") + "/" + conf("DB_DATABASE") )
 
 
 database = databases.Database(database_mysql_url_config())
 engine = sqlalchemy.create_engine(database_mysql_url_config())
 metadata.create_all(engine)
+
+# POSTGRES_USER: 'postgres'
+# POSTGRES_PASSWORD: 'dbpw'
+# POSTGRES_DATABASE: 'partnerup'
+# POSTGRES_HOST: 'localhost'
+# POSTGRES_PORT: '5432'
