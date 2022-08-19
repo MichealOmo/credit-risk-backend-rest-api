@@ -18,7 +18,6 @@ pipeline {
     stage("run") {
       steps {
         sh """
-          // docker-compose run --rm fast-api
           docker-compose up
         """
       }
