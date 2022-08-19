@@ -16,16 +16,16 @@ app = FastAPI(
     openapi_url = "/openapi.json"
 )
 
-@app.on_event("startup")
-async def startup():
-    await database.connect()
+# @app.on_event("startup")
+# async def startup():
+#     await database.connect()
 
-@app.on_event("shutdown")
-async def shutdown():
-    await database.disconnect()
+# @app.on_event("shutdown")
+# async def shutdown():
+#     await database.disconnect()
 
-# @app.get("/hello")
-# def hello():
-#     return "Hello Programmer! Mike, I got you!"
+@app.get("/hello")
+def hello():
+    return "Hello Programmer! Mike, I got you!"
 
-app.include_router(auth_router.router, tags=["Auth"])
+# app.include_router(auth_router.router, tags=["Auth"])
