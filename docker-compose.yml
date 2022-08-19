@@ -19,39 +19,47 @@ services:
       # - ./upload-images/:/upload-images/user/
 
     depends_on:
-      - db
+      - postgres
     restart: always
 
-  db:
-    container_name: postgresql_db
-    env_file:
-      - .env
+  postgres:
+    container_name: postgres_container
     image: postgres
-    restart: always
-    ports:
-      - ${DB_PORT}:5432
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /data/postgres
     volumes:
-      - db-data:/var/lib/postgresql/data
+       - postgres:/data/postgres
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
 
   pgadmin:
-    container_name: pgadmin
-    env_file:
-      - .env
+    container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
-    ports:
-      - ${PG_ADMIN_PORT}:5050
-    depends_on:
-      - db
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PG_ADMIN_PORT}:5050"
+    networks:
+      - postgres
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+
+networks:
+  postgres:
+    driver: bridge
 
 volumes:
-  db-data:
-  pgadmin-data:
+    postgres:
+    pgadmin:
