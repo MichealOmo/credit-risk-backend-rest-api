@@ -9,7 +9,7 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 COPY . ./
 
-# CMD ["uvicorn", "api.main:app", "--reload", "--port", "8001"]
+# CMD ["uvicorn", "api.main:app", "--reload", "--port", "80"]
 
 
 ENTRYPOINT uvicorn api.main:app --reload
@@ -30,3 +30,9 @@ ENTRYPOINT uvicorn api.main:app --reload
 # wsl --start (to start up deamon)
 # cd "C:\Program Files\Docker\Docker"./DockerCli.exe -SwitchDaemon
 # docker system prune
+
+
+
+# python -m pip install --upgrade --force-reinstall pip
+# python3 -m pip install --upgrade pip
+# can I install virtual environment on my remote server and run on it?

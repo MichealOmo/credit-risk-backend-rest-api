@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Micheal Omojola\Documents\GitHub\complete-build-rest-api\venv"
+VIRTUAL_ENV="C:\Users\Micheal Omojola\Documents\GitHub\credit-risk-backend-rest-api\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

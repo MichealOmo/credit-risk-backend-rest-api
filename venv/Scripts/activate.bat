@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Micheal Omojola\Documents\GitHub\complete-build-rest-api\venv
+set VIRTUAL_ENV=C:\Users\Micheal Omojola\Documents\GitHub\credit-risk-backend-rest-api\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
