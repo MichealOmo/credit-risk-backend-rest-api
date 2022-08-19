@@ -1,7 +1,7 @@
 # import time
 from fastapi import FastAPI, requests
 from api.utils.dbUtil import database
-# from api.auth import router as auth_router
+from api.auth import router as auth_router
 
 # from utils.dbUtil import database
 # from auth import router as auth_router
@@ -24,8 +24,8 @@ async def startup():
 async def shutdown():
     await database.disconnect()
 
-@app.get("/hello")
-def hello():
-    return "Hello Programmer! Mike, I got you!"
+# @app.get("/hello")
+# def hello():
+#     return "Hello Programmer! Mike, I got you!"
 
-# app.include_router(auth_router.router, tags=["Auth"])
+app.include_router(auth_router.router, tags=["Auth"])
