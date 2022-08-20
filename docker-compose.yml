@@ -14,26 +14,26 @@ services:
     #   - postgres
     restart: always
 
-#   postgres:
-#     container_name: postgres_container
-#     image: postgres
-#     env_file:
-#       - ./.env
-#     environment:
-#       POSTGRES_DATABASE: ${DB_DATABASE}
-#       POSTGRES_USER: ${DB_USER}
-#       POSTGRES_PASSWORD: ${DB_PASSWORD}
-#       POSTGRES_HOST: ${DB_HOST}
-#       # PG_PORT: 5432
-#       # POSTGRES_HOST_AUTH_METHOD: trust
-#       PGDATA: /data/postgres
-#     volumes:
-#        - postgres:/data/postgres
-#     ports:
-#       - ${DB_PORT}:5432
-#     networks:
-#       - postgres
-#     restart: unless-stopped
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_DATABASE: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_HOST: ${DB_HOST}
+      # PG_PORT: 5432
+      # POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - ${DB_PORT}:5432
+    networks:
+      - postgres
+    restart: unless-stopped
 
 #   pgadmin:
 #     container_name: pgadmin_container
@@ -55,10 +55,10 @@ services:
 #     #   - postgres
 
 
-# networks:
-#   postgres:
-#     driver: bridge
+networks:
+  postgres:
+    driver: bridge
 
-# volumes:
-#     postgres:
-#     pgadmin:
+volumes:
+    postgres:
+    # pgadmin:
