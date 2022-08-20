@@ -10,8 +10,8 @@ services:
       - ${APP_PORT}:8001
     volumes:
       - ./:/api
-    depends_on:
-      - postgres
+    # depends_on:
+    #   - postgres
     restart: always
 
 #   postgres:
