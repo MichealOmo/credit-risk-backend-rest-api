@@ -55,10 +55,10 @@ services:
 #     #   - postgres
 
 
-networks:
-  postgres:
-    driver: bridge
+# networks:
+#   postgres:
+#     driver: bridge
 
-volumes:
-    postgres:
+# volumes:
+#     postgres:
     # pgadmin:
