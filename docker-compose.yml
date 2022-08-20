@@ -26,13 +26,13 @@ services:
       POSTGRES_HOST: ${DB_HOST}
       # PG_PORT: 5432
       # POSTGRES_HOST_AUTH_METHOD: trust
-      PGDATA: /data/postgres
+      PGDATA: /var/lib/postgresql/data
     volumes:
-       - postgres:/data/postgres
+       - db-data:/var/lib/postgresql/data
     ports:
       - ${DB_PORT}:5432
-    networks:
-      - postgres
+    # networks:
+    #   - postgres
     restart: unless-stopped
 
 #   pgadmin:
@@ -55,10 +55,10 @@ services:
 #     #   - postgres
 
 
-networks:
-  postgres:
-    driver: bridge
+# networks:
+#   postgres:
+#     driver: bridge
 
 volumes:
-    postgres:
+    db-data:
     # pgadmin:
