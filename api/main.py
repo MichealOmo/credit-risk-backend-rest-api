@@ -24,8 +24,8 @@ async def startup():
 async def shutdown():
     await database.disconnect()
 
-@app.get("/hello")
-def hello():
-    return "Hello Programmer! Mike, I got you!"
+# @app.get("/hello")
+# def hello():
+#     return "Hello Programmer! Mike, I got you!"
 
 app.include_router(auth_router.router, tags=["Auth"])
