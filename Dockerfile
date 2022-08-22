@@ -1,41 +1,58 @@
 FROM python:3.8.1
 
+WORKDIR /opt
+
 ENV PYTHONUNBUFFERED 1
 
-
-ADD requirements.txt .
+# this ensures that the system pip is current before setting up the user and using it.
 RUN pip install --upgrade pip
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-COPY . ./
+RUN adduser --disabled-password --gecos '' newuser
+
+# Install requirements, including from Gemfury
+ADD . /opt/
+
+# ADD requirements.txt .
+RUN pip install --trusted-host pypi.python.org -r /opt/requirements.txt
 
 ENV PYTHONPATH "${PYTHONPATH}:api"
-# ENV PYTHONPATH "${PYTHONPATH}"
 
-# CMD ["uvicorn", "api.main:app", "--reload", "--port", "80"]
+RUN chmod +x /opt/run.sh
+RUN chown -R newuser:newuser ./
+USER newuser
+# EXPOSE 8001
 
-
-# ENTRYPOINT uvicorn api.main:app --reload
-
-
-CMD ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "8001"]
-
-
-
-# CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
-# CMD ["uvicorn", "api.main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"]
-# CMD ["uvicorn", "api.main:app", "--reload", "--port", "80"]
-# uvicorn api.main:app --reload
-
-# Delete all none files
-# docker rmi $(docker images -f "dangling=true" -q)
-# wsl --shutdown (to stop deamon)
-# wsl --start (to start up deamon)
-# cd "C:\Program Files\Docker\Docker"./DockerCli.exe -SwitchDaemon
-# docker system prune
+CMD ["bash", "./run.sh"]
+# CMD ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8001"]
 
 
 
-# python -m pip install --upgrade --force-reinstall pip
-# python3 -m pip install --upgrade pip
-# can I install virtual environment on my remote server and run on it?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# FROM python:3.8.1
+
+# ENV PYTHONUNBUFFERED 1
+
+# ADD requirements.txt .
+# RUN pip install --upgrade pip
+# RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# COPY . ./
+
+# ENV PYTHONPATH "${PYTHONPATH}:app"
+# CMD ["bash", "./run.sh"]
+
+# # CMD ["uvicorn", "api.main:app", "--reload", "--host", "0.0.0.0", "--port", "8001"]
