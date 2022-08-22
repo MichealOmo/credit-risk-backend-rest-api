@@ -7,7 +7,7 @@ services:
       - ./.env
     container_name: fast-api
     ports:
-      - ${APP_PORT}:8001
+      - ${APP_PORT}:5001
     volumes:
       - ./:/api
     depends_on:
